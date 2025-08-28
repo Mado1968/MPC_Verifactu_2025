@@ -1,0 +1,23 @@
+{
+  "name": "verifactu2026",
+  "version": "1.0.0",
+  "main": "main3.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.2",
+    "axios": "^1.11.0",
+    "express": "^5.1.0",
+    "path": "^0.12.7",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3"
+  }
+}

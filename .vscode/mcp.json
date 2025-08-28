@@ -1,0 +1,14 @@
+{
+	"servers": {
+		"verifactu-test": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"tsx",
+				"main6.ts"
+			]
+		}
+	},
+	"inputs": []
+}
