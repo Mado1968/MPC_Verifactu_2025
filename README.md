@@ -1,7 +1,9 @@
 # MCP Verifactu 2025
 
+![MCP Architecture](MCP-Arc.png)
+
 ## About This Project
-This MCP (Message Command Processor) server is designed to help small and medium-sized businesses understand and comply with the Verifactu law requirements that will be implemented in 2026.
+This MCP (Model Context Protocol Server) is designed to help small and medium-sized businesses understand and comply with the Verifactu law requirements that will be implemented in 2026.
 
 ## Purpose
 Our main objective is to provide a helpful tool that:
