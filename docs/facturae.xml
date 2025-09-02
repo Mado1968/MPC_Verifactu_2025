@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Especificación del formato Facturae
+  Versiones: 3.2, 3.2.1 y 3.2.2
+  Documentación actualizada el 06/06/2017
+-->
+<FacturaeSchema>
+  <Grupo nombre="Facturae" obligatoriedad="[1..1]">
+    <Descripcion>Elemento ORIGEN de Fichero de Facturas Facturae.</Descripcion>
+    <Grupo nombre="FileHeader" esquema="1." tipo="FileHeaderType" obligatoriedad="[1..1]">
+      <Descripcion>Cabecera del fichero xml</Descripcion>
+      <Campo nombre="SchemaVersion" esquema="1.1." tipo="SchemaVersionType string" obligatoriedad="[1..1]">
+        <Descripcion>Código que indica versión utilizada. Puede tomar los valores 3.2, 3.2.1, 3.2.2.</Descripcion>
+      </Campo>
+      <Campo nombre="Modality" esquema="1.2." tipo="ModalityType string" obligatoriedad="[1..1]">
+        <Descripcion>Modalidad. Individual o Lote. Si es "individual" (I) los importes de los campos del grupo Batch coincidirán con sus correspondientes campos del grupo InvoiceTotals y el campo InvoicesCount tendrá siempre el valor "1". Si es "lote" (L), el valor del campo InvoicesCount será siempre > "1".</Descripcion>
+      </Campo>
+      <Campo nombre="InvoiceIssuerType" esquema="1.3." tipo="InvoiceIssuerTypeType string" obligatoriedad="[1..1]">
+        <Descripcion>Tipo Emisor Factura. Puede tomar 3 valores (EM, RE y TE), que se describen como "Proveedor (antes denominado emisor)", "Destinatario (antes denominado cliente o receptor)" y "Tercero", respectivamente. Si toma el valor "TE" el grupo ThirdParty será obligatorio cumplimentarlo en todos sus apartados.</Descripcion>
+      </Campo>
+      <Grupo nombre="ThirdParty" esquema="1.4." tipo="ThirdPartyType" obligatoriedad="[0..1]">
+        <Descripcion>Tercero. La factura puede ser generada y firmada por un Tercero.</Descripcion>
+        <Grupo nombre="TaxIdentification" esquema="1.4.1" tipo="TaxIdentificationType" obligatoriedad="[1..1]">
+          <Descripcion>Identificación fiscal.</Descripcion>
+          <Campo nombre="PersonTypeCode" esquema="1.4.1.1." tipo="PersonTypeCodeType string" obligatoriedad="[1..1]">
+            <Descripcion>Tipo de persona. Física o Jurídica. "F" - Física; "J" - Jurídica.</Descripcion>
+          </Campo>
+          <Campo nombre="ResidenceTypeCode" esquema="1.4.1.2." tipo="ResidenceTypeCodeType string" obligatoriedad="[1..1]">
+            <Descripcion>Identificación del tipo de residencia y/o extranjería. "E" - Extranjero; "R" - Residente; "U" - Residente en la Unión Europea.</Descripcion>
+          </Campo>
+          <Campo nombre="TaxIdentificationNumber" esquema="1.4.1.3." tipo="TextMin3Max30Type string" obligatoriedad="[1..1]">
+            <Descripcion>Código de Identificación Fiscal del sujeto. Se trata de las composiciones de NIF/CIF que marca la Administración correspondiente (precedidas de las dos letras del país en el caso de operaciones intracomunitarias, es decir, cuando comprador y vendedor tienen domicilio fiscal en estados miembros de la UE distintos).</Descripcion>
+          </Campo>
+        </Grupo>
+        <Grupo nombre="LegalEntity" esquema="1.4.2.1." tipo="LegalEntityType" obligatoriedad="[1..1]">
+          <Descripcion>Persona jurídica y otras.</Descripcion>
+          <!-- Contenido adicional de LegalEntity e Individual se detalla en las siguientes páginas del documento original -->
+        </Grupo>
+      </Grupo>
+      <Grupo nombre="Batch" esquema="1.5." tipo="BatchType" obligatoriedad="[1..1]">
+        <Descripcion>Lote.</Descripcion>
+        <Campo nombre="BatchIdentifier" esquema="1.5.1." tipo="TextMax70Type string" obligatoriedad="[1..1]">
+          <Descripcion>Identificador del lote. Concatenación del nº de documento del emisor con el número de la primera factura y el número de serie caso de existir.</Descripcion>
+        </Campo>
+        <Campo nombre="InvoicesCount" esquema="1.5.2." tipo="long" obligatoriedad="[1..1]">
+          <Descripcion>Número total de facturas. Refleja, cuando es lote, el número de facturas del mismo. Siempre será valor "1" cuando el campo Modality (Modalidad) tenga el valor "I".</Descripcion>
+        </Campo>
+        <!-- Mas campos de Batch -->
+      </Grupo>
+      <Grupo nombre="FactoringAssignmentData" esquema="1.6." tipo="FactoringAssignmentDataType" obligatoriedad="[0..1]">
+        <Descripcion>Datos cesión factoring.</Descripcion>
+        <!-- Campos de FactoringAssignmentData -->
+      </Grupo>
+    </Grupo>
+    <Grupo nombre="Parties" esquema="2." tipo="PartiesType" obligatoriedad="[1..1]">
+      <Descripcion>Sujetos - Datos del emisor y receptor de la factura</Descripcion>
+      <Grupo nombre="SellerParty" esquema="2.1." tipo="BusinessType" obligatoriedad="[1..1]">
+        <Descripcion>Emisor. Datos básicos del fichero. Son comunes a la factura o facturas que se incluyen.</Descripcion>
+        <!-- Estructura detallada de SellerParty -->
+      </Grupo>
+      <Grupo nombre="BuyerParty" esquema="2.2." tipo="BusinessType" obligatoriedad="[1..1]">
+        <Descripcion>Receptor. Datos básicos del fichero. Son comunes a la factura o facturas que se incluyen.</Descripcion>
+        <!-- Estructura detallada de BuyerParty -->
+      </Grupo>
+    </Grupo>
+    <Grupo nombre="Invoices" esquema="3." tipo="InvoicesType" obligatoriedad="[1..1]">
+      <Descripcion>Conjunto de facturas que contiene el fichero. Para todos los elementos numéricos, los cálculos se efectuarán siempre redondeando al número de decimales correspondientes.</Descripcion>
+      <Grupo nombre="Invoice" esquema="3.1." tipo="InvoiceType" obligatoriedad="[1..*]">
+        <Descripcion>Factura.</Descripcion>
+        <Grupo nombre="InvoiceHeader" esquema="3.1.1." tipo="InvoiceHeaderType" obligatoriedad="[1..1]">
+          <Descripcion>Cabecera de factura. Para cada una de las facturas que pueden componer un Lote, recoge datos que determinan inequívocamente cada factura.</Descripcion>
+          <!-- Campos de InvoiceHeader -->
+        </Grupo>
+        <Grupo nombre="InvoiceIssueData" esquema="3.1.2." tipo="InvoiceIssueDataType" obligatoriedad="[1..1]">
+          <Descripcion>Datos de la emisión de la factura.</Descripcion>
+          <!-- Campos de InvoiceIssueData -->
+        </Grupo>
+        <Grupo nombre="TaxesOutputs" esquema="3.1.3." obligatoriedad="[1..1]">
+          <Descripcion>Impuestos repercutidos.</Descripcion>
+          <!-- Detalles de TaxesOutputs -->
+        </Grupo>
+        <Grupo nombre="TaxesWithheld" esquema="3.1.4." obligatoriedad="[0..1]">
+          <Descripcion>Impuestos retenidos.</Descripcion>
+          <!-- Detalles de TaxesWithheld -->
+        </Grupo>
+        <Grupo nombre="InvoiceTotals" esquema="3.1.5." tipo="InvoiceTotalsType" obligatoriedad="[1..1]">
+          <Descripcion>Totales de factura.</Descripcion>
+          <!-- Campos de InvoiceTotals -->
+        </Grupo>
+        <Grupo nombre="Items" esquema="3.1.6." tipo="ItemsType" obligatoriedad="[1..1]">
+          <Descripcion>Información detallada.</Descripcion>
+          <!-- Detalles de Items -->
+        </Grupo>
+        <Grupo nombre="PaymentDetails" esquema="3.1.7." tipo="InstallmentsType" obligatoriedad="[0..1]">
+          <Descripcion>Datos de pago.</Descripcion>
+          <!-- Detalles de PaymentDetails -->
+        </Grupo>
+        <Grupo nombre="LegalLiterals" esquema="3.1.8." tipo="LegalLiteralsType" obligatoriedad="[0..1]">
+          <Descripcion>Literales legales.</Descripcion>
+          <Campo nombre="LegalReference" esquema="3.1.8.1." tipo="TextMax250Type string" obligatoriedad="[0..*]">
+             <Descripcion>Textos literales que deben figurar obligatoriamente en determinadas facturas.</Descripcion>
+          </Campo>
+        </Grupo>
+        <Grupo nombre="AdditionalData" esquema="3.1.9." tipo="AdditionalDataType" obligatoriedad="[0..1]">
+          <Descripcion>Datos adicionales.</Descripcion>
+          <!-- Campos de AdditionalData -->
+        </Grupo>
+      </Grupo>
+    </Grupo>
+    <Grupo nombre="Extensions" esquema="4." tipo="ExtensionsType" obligatoriedad="[0..1]">
+      <Descripcion>Extensiones. Podrán incorporarse nuevas definiciones estructuradas cuando sean de interés conjunto para emisores y receptores, y no estén ya definidas en el esquema de la factura.</Descripcion>
+      <Campo nombre="[Any Label]" esquema="4.1." obligatoriedad="[0..*]">
+        <Descripcion>(Desde otro namespace)</Descripcion>
+      </Campo>
+    </Grupo>
+    <Grupo nombre="ds:Signature" esquema="5." obligatoriedad="[0..1]">
+      <Descripcion>Conjunto de datos asociados a la factura que garantizarán la autoría y la integridad del mensaje. Se define como opcional para facilitar la verificación y el tránsito del fichero. No obstante, debe cumplimentarse este bloque de firma electrónica para que se considere una factura electrónica válida legalmente frente a terceros.</Descripcion>
+    </Grupo>
+  </Grupo>
+</FacturaeSchema>

@@ -1,0 +1,75 @@
+
+***
+
+# Tot el que cal saber sobre la llei Verifactu
+
+## Què és la llei Verifactu?
+La llei Verifactu és una reforma legal impulsada a Espanya amb l'objectiu principal de modernitzar la facturació, lluitar contra el frau fiscal i digitalitzar els processos administratius de les empreses i els autònoms. Forma part de la **Ley Antifraude (Llei 11/2021)**, i és desenvolupada pel **Reial Decret 1007/2023** i modificada per altres normes posteriors.
+
+### Objectiu de la llei
+*   Combatre l'evasió fiscal i evitar la doble comptabilitat.
+*   Garantir la integritat, inalterabilitat i traçabilitat de tota factura emesa.
+*   Impulsar la digitalització dels processos de facturació al teixit empresarial espanyol.
+
+### Àmbit d'aplicació: A qui afecta Verifactu?
+A partir de 2026 (amb períodes transitoris ja actius), la llei afecta a:
+
+*   Totes les empreses subjectes a l'Impost de Societats.
+*   Totes les persones físiques (autònoms) que desenvolupin activitats econòmiques en estimació directa.
+*   PIMES, professionals i entitats com comunitats de béns o societats civils que emeten factures.
+*   Queden exempts, temporalment: els acollits al règim de mòduls, algunes activitats agrícoles i determinades operacions exemptes d'IVA.
+*   Les empreses que ja informen amb l'SII (Suministro Inmediato de Información) també estan exemptes del Verifactu.
+
+## Funcionament i requisits tècnics
+
+### Què obliga la llei?
+*   Utilitzar programari de facturació homologat segons els requisits definits per l'AEAT.
+*   Les factures han de:
+    *   Incloure un codi QR.
+    *   Contenir una empremta digital (hash) en cada factura i registre que permet l'encadenament i impedeix la manipulació.
+    *   Portar una llegenda de "factura verificable” o “VERI\*FACTU" quan sigui aplicable.
+    *   Permetre la traçabilitat i la transició entre factures.
+    *   Enviar els registres a l'Agència Tributària de forma automàtica, consecutiva i segura (opcionalment, per ara, però obligatori en un futur).
+*   No es podran emetre factures en Word, Excel ni en paper fora del programari certificat.
+
+## Per als desenvolupadors de software
+*   Han de certificar sota una declaració responsable que el seu programari compleix la normativa.
+*   Són responsables del manteniment dels estàndards i de no vendre software fora de la llei.
+
+## Exemple de registre de facturació
+Cada factura genera immediatament un registre registrat mitjançant una empremta digital, amb un control exhaustiu dels esdeveniments (creació, modificació, errors, etc.) que facilita la traçabilitat i el control per part d'Hisenda.
+
+## Calendari d'entrada en vigor
+
+| Data | Obligació |
+| :--- | :--- |
+| 1 de juliol de 2025 | Tot el programari comercialitzat haurà d'estar homologat segons Verifactu. |
+| 1 de gener de 2026 | Societats: ús obligatori del software adaptat. |
+| 1 de juliol de 2026 | Autònoms persona física: ús obligatori del software adaptat. |
+
+## Sancions pel seu incompliment
+
+*   **Usuaris finals (empreses i autònoms):**
+    *   Sanció de fins a 50.000 € per exercici fiscal per ús o simple tinença de programari no homologat, encara que no hi hagi intencionalitat de frau.
+    *   La sanció es repeteix per cada any en què persisteixi l'incompliment i per cada software utilitzat.
+*   **Fabricants / desenvolupadors de software:**
+    *   Sanció fixa de fins a 150.000 € anuals i per cada tipus de programari que no compleixi amb la llei.
+    *   Multes per manca de certificació poden arribar a 1.000 euros per llicència venuda.
+*   **Altres implicacions:**
+    *   La mera tinença o distribució de programari sense la certificació ja és penalitzada.
+    *   Les sancions són considerades greus per part d'Hisenda, sigui ús actiu o passiu del programari il·legal.
+
+## Avantatges addicionals de Verifactu
+*   Facilita la preparació d'esborranys de declaracions tributàries.
+*   Disminueix la càrrega administrativa gràcies a l'automatització i la digitalització.
+*   Proporciona major seguretat jurídica i traçabilitat, evitant problemes en inspeccions.
+
+## Resum visual dels requisits clau
+*   Programari certificat obligatori (Word, Excel i factures en paper obsolets).
+*   Emissió obligatòria amb QR i "hash".
+*   Enviament directe de dades a l'AEAT.
+*   Multes molt elevades (fins a 50.000€ per usuaris; fins a 150.000€ per desenvolupadors per any).
+
+Per a qüestions específiques o casos molt particulars, es recomana consultar un assessor fiscal actualitzat i revisar directament la normativa de l'Agència Tributària.
+
+***
